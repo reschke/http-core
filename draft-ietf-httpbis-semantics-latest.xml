@@ -1837,6 +1837,57 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
 </sourcecode>
 </section>
 
+
+<section title="Trailer Fields" anchor="trailers">
+<t>
+   A trailer allows the sender to include additional fields at the end of a
+   chunked message in order to supply metadata that might be dynamically
+   generated while the message body is sent, such as a message integrity
+   check, digital signature, or post-processing status. The trailer fields are
+   identical to header fields, except they are sent in a chunked trailer
+   instead of the message's header section.
+</t>
+<t>
+   A sender &MUST-NOT; generate a trailer that contains a field necessary for
+   message framing (e.g., <x:ref>Transfer-Encoding</x:ref> and
+   <x:ref>Content-Length</x:ref>), routing (e.g., <x:ref>Host</x:ref>),
+   request modifiers (e.g., controls and conditionals in
+   <xref target="request.header.fields"/>), authentication (e.g., see <xref target="request.auth"/>
+   and <xref target="RFC6265"/>), response control data (e.g., see
+   <xref target="response.control.data"/>), or determining how to process the payload
+   (e.g., <x:ref>Content-Encoding</x:ref>, <x:ref>Content-Type</x:ref>,
+   <x:ref>Content-Range</x:ref>, and <x:ref>Trailer</x:ref>).
+</t>
+<t>
+   When a chunked message containing a non-empty trailer is received, the
+   recipient &MAY; process the fields (aside from those forbidden above)
+   as if they were appended to the message's header section.
+   A recipient &MUST; ignore (or consider as an error) any fields that are
+   forbidden to be sent in a trailer, since processing them as if they were
+   present in the header section might bypass external security filters.
+</t>
+<t>
+   Unless the request includes a <x:ref>TE</x:ref> header field indicating
+   "trailers" is acceptable, as described in <xref target="header.te"/>, a
+   server &SHOULD-NOT; generate trailer fields that it believes are necessary
+   for the user agent to receive. Without a TE containing "trailers", the
+   server ought to assume that the trailer fields might be silently discarded
+   along the path to the user agent. This requirement allows intermediaries to
+   forward a de-chunked message to an HTTP/1.0 recipient without buffering the
+   entire response.
+</t>
+<t>
+   When a message includes a message body encoded with the chunked
+   transfer coding and the sender desires to send metadata in the form of
+   trailer fields at the end of the message, the sender &SHOULD; generate a
+   <x:ref>Trailer</x:ref> header field before the message body to indicate
+   which fields will be present in the trailers. This allows the
+   recipient to prepare for receipt of that metadata before it starts
+   processing the body, which is useful if the message is being streamed
+   and the recipient wishes to confirm an integrity check on the fly.
+</t>
+
+
 <section title="Trailer" anchor="header.trailer">
   <iref primary="true" item="Trailer header field" x:for-anchor=""/>
   <x:anchor-alias value="Trailer"/>
@@ -1858,6 +1909,7 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
    routing, authentication, or configuration prior to receiving the
    representation data.
 </cref></t>
+</section>
 </section>
 </section>
 
