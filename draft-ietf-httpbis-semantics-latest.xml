@@ -1075,8 +1075,9 @@ Content-Type: text/plain
    Each major version of HTTP defines its own syntax for the inclusion of
    information in messages. Nevertheless, a common abstraction is that a
    message includes some form of envelope/framing, a potential set of named
-   data fields, and a potential body. This section defines the abstraction
-   for message fields as field-name and field-value pairs.
+   data fields as headers, a potential body, and optionally trailer fields.
+   This section defines the abstraction for message fields as field-name and
+   field-value pairs.
 </t>
 
 <section title="Header Field Names" anchor="field.names">
