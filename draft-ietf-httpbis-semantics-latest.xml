@@ -380,8 +380,9 @@
    <x:dfn>request</x:dfn> message, beginning with a method (<xref
    target="methods"/>) and URI, followed by header fields containing request
    modifiers, client information, and representation metadata (<xref
-   target="header.fields"/>), and finally a message body containing the
-   payload body (if any, <xref target="message.body"/>).
+   target="header.fields"/>), a message body containing the
+   payload body (if any, <xref target="message.body"/>), and optionally,
+   trailer fields (<xref target="trailers"/>).
 </t>
 <t>
    A server responds to a client's request by sending one or more HTTP
