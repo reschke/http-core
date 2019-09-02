@@ -10237,7 +10237,6 @@ Content-Encoding: gzip
 <reference anchor="Messaging">
   <x:source href="draft-ietf-httpbis-messaging-latest.xml" basename="draft-ietf-httpbis-messaging-latest">
     <x:has anchor="chunked.encoding"/>
-    <x:has anchor="chunked.trailer.part"/>
     <x:has anchor="connection.management"/>
     <x:has anchor="differences.between.http.and.mime"/>
     <x:has anchor="field.parsing"/>

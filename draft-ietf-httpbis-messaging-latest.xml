@@ -1309,7 +1309,7 @@ https://www.example.org
    buffers, which enables the sender to retain connection persistence and the
    recipient to know when it has received the entire message.
 </t>
-<sourcecode type="abnf7230"><iref primary="true" item="Grammar" subitem="chunked-body"><!--terminal production--></iref><iref primary="true" item="Grammar" subitem="chunk"/><iref primary="true" item="Grammar" subitem="chunk-size"/><iref primary="true" item="Grammar" subitem="last-chunk"/><iref primary="false" item="Grammar" subitem="trailer-part"/><iref primary="false" item="Grammar" subitem="chunk-ext"/><iref primary="true" item="Grammar" subitem="chunk-data"/>
+<sourcecode type="abnf7230"><iref primary="true" item="Grammar" subitem="chunked-body"><!--terminal production--></iref><iref primary="true" item="Grammar" subitem="chunk"/><iref primary="true" item="Grammar" subitem="chunk-size"/><iref primary="true" item="Grammar" subitem="last-chunk"/><iref primary="true" item="Grammar" subitem="trailer-part"/><iref primary="false" item="Grammar" subitem="chunk-ext"/><iref primary="true" item="Grammar" subitem="chunk-data"/>
   <x:ref>chunked-body</x:ref>   = *<x:ref>chunk</x:ref>
                    <x:ref>last-chunk</x:ref>
                    <x:ref>trailer-part</x:ref>
@@ -1321,6 +1321,7 @@ https://www.example.org
   <x:ref>last-chunk</x:ref>     = 1*("0") [ <x:ref>chunk-ext</x:ref> ] <x:ref>CRLF</x:ref>
 
   <x:ref>chunk-data</x:ref>     = 1*<x:ref>OCTET</x:ref> ; a sequence of chunk-size octets
+  <x:ref>trailer-part</x:ref>   = *( <x:ref>header-field</x:ref> <x:ref>CRLF</x:ref> )
 </sourcecode>
 <t>
    The chunk-size field is a string of hex digits indicating the size of
@@ -1370,13 +1371,6 @@ https://www.example.org
    message, and generate an appropriate <x:ref>4xx (Client Error)</x:ref>
    response if that amount is exceeded.
 </t>
-</section>
-
-<section title="Chunked Trailer Part" anchor="chunked.trailer.part">
-  <x:anchor-alias value="trailer-part"/>
-<sourcecode type="abnf7230"><iref primary="true" item="Grammar" subitem="trailer-part"/><iref primary="false" item="Grammar" subitem="header-field"/>
-  <x:ref>trailer-part</x:ref>   = *( <x:ref>header-field</x:ref> <x:ref>CRLF</x:ref> )
-</sourcecode>
 </section>
 
 <section title="Decoding Chunked" anchor="decoding.chunked">
@@ -1505,7 +1499,7 @@ https://www.example.org
 <t>
    The presence of the keyword "trailers" indicates that the client is willing
    to accept trailer fields in a chunked transfer coding, as defined in
-   <xref target="chunked.trailer.part"/>, on behalf of itself and any downstream
+   <xref target="trailers"/>, on behalf of itself and any downstream
    clients. For requests from an intermediary, this implies that either:
    (a) all downstream clients are willing to accept trailer fields in the
    forwarded response; or,
@@ -2527,6 +2521,7 @@ Upgrade: HTTP/2.0
     <x:has anchor="status.413"/>
     <x:has anchor="status.414"/>
     <x:has anchor="status.codes"/>
+    <x:has anchor="trailers"/>
     <x:has anchor="uri"/>
     <x:has anchor="uri.comparison"/>
     <x:has anchor="whitespace"/>
