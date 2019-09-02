@@ -389,8 +389,9 @@
    <x:dfn>response</x:dfn> messages, each beginning with a success or error
    code (<xref target="status.codes"/>), possibly followed by header fields
    containing server information, resource metadata, and representation
-   metadata (<xref target="header.fields"/>), and finally a message body
-   containing the payload body (if any, <xref target="message.body"/>).
+   metadata (<xref target="header.fields"/>), and message body
+   containing the payload body (if any, <xref target="message.body"/>), and 
+   finally, optional trailer fields (<xref target="trailers"/>).
 </t>
 <t>
    A connection might be used for multiple request/response exchanges. The
