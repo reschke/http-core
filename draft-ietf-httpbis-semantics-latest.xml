@@ -1841,11 +1841,11 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
 <section title="Trailer Fields" anchor="trailers">
 <t>
    A trailer allows the sender to include additional fields at the end of a
-   chunked message in order to supply metadata that might be dynamically
+   message in order to supply metadata that might be dynamically
    generated while the message body is sent, such as a message integrity
    check, digital signature, or post-processing status. The trailer fields are
-   identical to header fields, except they are sent in a chunked trailer
-   instead of the message's header section.
+   identical to header fields, except they are sent after the body
+   instead of in the message's header section.
 </t>
 <t>
    A sender &MUST-NOT; generate a trailer that contains a field necessary for
@@ -1859,8 +1859,8 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
    <x:ref>Content-Range</x:ref>, and <x:ref>Trailer</x:ref>).
 </t>
 <t>
-   When a chunked message containing a non-empty trailer is received, the
-   recipient &MAY; process the fields (aside from those forbidden above)
+   When a message containing a trailer is received, the
+   recipient &MAY; process its fields (aside from those forbidden above)
    as if they were appended to the message's header section.
    A recipient &MUST; ignore (or consider as an error) any fields that are
    forbidden to be sent in a trailer, since processing them as if they were
@@ -1877,9 +1877,8 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
    entire response.
 </t>
 <t>
-   When a message includes a message body encoded with the chunked
-   transfer coding and the sender desires to send metadata in the form of
-   trailer fields at the end of the message, the sender &SHOULD; generate a
+   When a sender desires to send metadata in the form of
+   trailer fields at the end of the message, they &SHOULD; generate a
    <x:ref>Trailer</x:ref> header field before the message body to indicate
    which fields will be present in the trailers. This allows the
    recipient to prepare for receipt of that metadata before it starts
