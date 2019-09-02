@@ -1534,7 +1534,7 @@ deployed and not likely to be registered in a timely manner otherwise.</t>
     field is used by an origin server's content selection algorithm; see
     <xref target="header.vary"/>).</t></li>
   <li><t>Whether the header field is useful or allowable in trailers (see
-    <xref target="chunked.encoding"/>).</t></li>
+    <xref target="trailers"/>).</t></li>
   <li><t>Whether the header field ought to be preserved across redirects.</t></li>
   <li><t>Whether it introduces any additional security considerations, such
     as disclosure of privacy-related data.</t></li>
@@ -9346,7 +9346,7 @@ Content-Encoding: gzip
    way. 
 </t>
 <t>  
-   Authentication-Info can be used inside trailers (<xref target="chunked.trailer.part"/>)
+   Authentication-Info can be used inside trailers (<xref target="trailers"/>)
    when the authentication scheme explicitly allows this.
 </t>
 
