@@ -1057,8 +1057,8 @@ h1:hover > a.self, h2:hover > a.self, h3:hover > a.self, li:hover > a.self, p:ho
                </li>
                <li>
                   <div>
-                     <p>if the cache is shared: the "private" response directive is not present in the response
-                        (see <a href="#cache-response-directive.private" title="private">Section 5.2.2.7</a>);
+                     <p>if the cache is shared: the "private" response directive is either not present or
+                        allows a modified response to be stored by a shared cache; see <a href="#cache-response-directive.private" title="private">Section 5.2.2.7</a>);
                      </p>
                   </div>
                </li>
@@ -2664,6 +2664,8 @@ h1:hover > a.self, h2:hover > a.self, h3:hover > a.self, li:hover > a.self, p:ho
                   </li>
                   <li>In <a href="#cache-response-directive.public" title="public">Section 5.2.2.6</a> and <a href="#cache-response-directive.private" title="private">Section 5.2.2.7</a>, clarify "private" and "public" so that they do not override all other cache directives
                      (&lt;<a href="https://github.com/httpwg/http-core/issues/268">https://github.com/httpwg/http-core/issues/268</a>&gt;)
+                  </li>
+                  <li>In <a href="#response.cacheability" title="Storing Responses in Caches">Section 3</a>, distinguish between private with and without qualifying headers (&lt;<a href="https://github.com/httpwg/http-core/issues/270">https://github.com/httpwg/http-core/issues/270</a>&gt;)
                   </li>
                   <li>In <a href="#caching.negotiated.responses" title="Calculating Cache Keys with Vary">Section 4.1</a>, clarify that any "*" as a member of Vary will disable caching (&lt;<a href="https://github.com/httpwg/http-core/issues/286">https://github.com/httpwg/http-core/issues/286</a>&gt;)
                   </li>
