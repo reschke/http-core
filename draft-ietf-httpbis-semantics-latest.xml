@@ -92,7 +92,7 @@
 
 <abstract>
 <t>
-   The Hypertext Transfer Protocol (HTTP) is a stateless application-level
+   The Hypertext Transfer Protocol (HTTP) is a stateless application-level xyz
    protocol for distributed, collaborative, hypertext information systems.
    This document defines the semantics of HTTP: its architecture,
    terminology, the "http" and "https" Uniform Resource Identifier (URI)
