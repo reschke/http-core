@@ -21,7 +21,7 @@ jobs:
 
     - name: Push HTML
       run: |
-        git config --global user.name 'Julian's HTML Bot'
-        git config --global user.email 'julian.reschke@gmx.de'
+        git config --global user.name "Julian's HTML Bot"
+        git config --global user.email "julian.reschke@gmx.de"
         git commit -m "HTML checkin" draft-ietf-httpbis*.html
         git push
